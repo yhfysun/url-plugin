@@ -70,7 +70,6 @@ public class RequestInterceptorFilter extends OncePerRequestFilter {
         try {
             apiRelationMapper.insert(entity);
         } catch (Exception e) {
-            log.error("保存到数据库失败，e：{}", e);
         }
     }
 }
