@@ -1,19 +1,9 @@
 package com.ziyan.urlplugin.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "t_node_url_and_api_relation", uniqueConstraints = {
-        @javax.persistence.UniqueConstraint(columnNames = {"nodeUrl", "api"})  // nodeUrl 和 api 字段联合唯一
-})
+
 public class NodeUrlAndApiRelation {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long id;
 
     private String nodeUrl;  // 前端原始 URL
