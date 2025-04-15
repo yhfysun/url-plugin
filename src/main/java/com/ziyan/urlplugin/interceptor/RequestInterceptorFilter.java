@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebFilter(urlPatterns = "/*")  // 拦截所有请求
 @Slf4j
@@ -36,7 +37,16 @@ public class RequestInterceptorFilter extends OncePerRequestFilter {
         try {
             // 获取请求头中的 node-url 参数
             String nodeUrl = request.getHeader("node-url");
-            log.info("进入url拦截组件：nodeUrl: {}", nodeUrl);
+            log.info("进入url拦截组件：nodeUrl: {}，", nodeUrl);
+            
+            // 打印所有请求头
+            Enumeration<String> headerNames = request.getHeaderNames();
+            while (headerNames.hasMoreElements()) {
+                String headerName = headerNames.nextElement();
+                String headerValue = request.getHeader(headerName);
+                log.info("请求头 - {}: {}", headerName, headerValue);
+            }
+            
             // 获取请求的 HandlerMethod
             HandlerMethod handler = (HandlerMethod) handlerMapping.getHandler(request).getHandler();
             if (nodeUrl != null) {
